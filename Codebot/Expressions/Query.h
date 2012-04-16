@@ -44,6 +44,5 @@ QueryNode<T> MakeQuery(IEnumerator<T>* e)
 #define ForEach(a, b) auto a = Query(b); while (a.Next())
 #define ExecuteEach(a) { auto z = Query(a); while (z.Next()) z.Value()(); }
 
-
 }
 }
