@@ -42,6 +42,7 @@ void Write(const String& s, const A0& a0, const A1& a1, const A2& a2,
 	Write(Text::Format(s, a0, a1, a2, a3, a4));
 }
 
+
 void WriteLine(const String& s);
 
 template <typename A0>
