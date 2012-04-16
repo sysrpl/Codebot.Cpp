@@ -7,6 +7,8 @@ namespace Codebot
 extern String SwitchChar;
 
 
+
+
 class Application
 {
 private:
