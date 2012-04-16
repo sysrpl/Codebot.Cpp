@@ -6,6 +6,7 @@ namespace Codebot
 namespace Testing
 {
 
+
 typedef Func<Boolean(void)> TestFunc;
 
 class TestItem : public ValueType
