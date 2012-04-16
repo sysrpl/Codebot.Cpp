@@ -56,7 +56,7 @@ Byte& AddressData::operator [] (Integer index)
 	return b[index];
 }
 
-const Byte& AddressData::operator [] (Integer index) const 
+const Byte& AddressData::operator [] (Integer index) const
 {
 	Byte* b = (Byte*)&data;
 	if (index < 0)
@@ -97,7 +97,7 @@ AddressName::AddressName(Byte a, Byte b, Byte c, Byte d)
 	location = inet_ntoa(*(in_addr*)&addr);
 }
 
-AddressName::operator String () 
+AddressName::operator String ()
 {
 	Resolve();
 	return location;
@@ -177,7 +177,7 @@ Socket::~Socket()
 
 void Socket::Close()
 {
-	// TODO: Fix this
+	// TODO: Fix this please
 	if (handle == INVALID_SOCKET)
 		return;
 	Handle h = handle;
@@ -204,7 +204,7 @@ Boolean Socket::Connect(const AddressName& host, Word port)
 	if (handle == INVALID_SOCKET)
 		return false;
     sockaddr_in a;
-    a.sin_family = AF_INET;	
+    a.sin_family = AF_INET;
 	a.sin_addr.s_addr = addressName.Address();
     a.sin_port = htons(port);
 	if (connect(handle, (sockaddr*)&a, sizeof(a)) == SOCKET_ERROR)
@@ -234,9 +234,9 @@ Boolean Socket::Listen(const AddressName& adapter, Word port)
     sockaddr_in a;
     a.sin_family = AF_INET;
 	if (addressName.Address().Valid())
-		a.sin_addr.s_addr = addressName.Address(); 
+		a.sin_addr.s_addr = addressName.Address();
 	else
-		a.sin_addr.s_addr = INADDR_ANY; 
+		a.sin_addr.s_addr = INADDR_ANY;
     a.sin_port = htons(port);
 	if (bind(handle, (sockaddr*)&a, sizeof(a)) == SOCKET_ERROR)
 	{
@@ -272,7 +272,7 @@ Boolean Socket::Accept(Socket* socket)
 	LongWord timeout = 4000;
 	setsockopt(socket->handle, SOL_SOCKET, SO_SNDTIMEO, (char*)&timeout, sizeof(timeout));
 	setsockopt(socket->handle, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout, sizeof(timeout));
-	socket->addressName = AddressName(AddressData(a.sin_addr.S_un.S_addr)); 
+	socket->addressName = AddressName(AddressData(a.sin_addr.S_un.S_addr));
 	socket->port = ntohs(a.sin_port);
 	socket->state = SocketStateRemote;
 	return true;
