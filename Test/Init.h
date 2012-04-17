@@ -1,5 +1,6 @@
 #pragma once
 #include <Codebot/Packages/System.h>
+#include <Codebot/Packages/Expressions.h>
 #include <Codebot/Packages/Testing.h>
 
 #define AddTestGroup(name) tests.DefineGroup(name)

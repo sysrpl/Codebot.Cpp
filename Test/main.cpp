@@ -12,6 +12,7 @@ void AllTests()
 	ListTests(tests);
 	StringTests(tests);
 	WriteLine(tests.Execute());
+	ReadLine();
 }
 
 int main()

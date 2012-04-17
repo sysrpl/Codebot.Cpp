@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D1574978-EF74-446F-A362-17C9AD67601F}</ProjectGuid>
-    <RootNamespace>CodebotExpression</RootNamespace>
+    <ProjectGuid>{B11094C5-17C9-4E8B-9E7E-682FA467D88E}</ProjectGuid>
+    <RootNamespace>Test</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -62,11 +62,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="OrderByExpression.h" />
-    <ClInclude Include="Query.h" />
-    <ClInclude Include="QueryNode.h" />
-    <ClInclude Include="SelectExpression.h" />
-    <ClInclude Include="WhereExpression.h" />
+    <ClInclude Include="ArrayTests.h" />
+    <ClInclude Include="DictionaryTests.h" />
+    <ClInclude Include="Init.h" />
+    <ClInclude Include="ListTests.h" />
+    <ClInclude Include="StringTests.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\Debug\Codebot.lib" />
+    <Library Include="..\Debug\Codebot.Net.lib" />
+    <Library Include="..\Debug\codecore.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Codebot\Codebot.vcxproj">
+      <Project>{b0f4de16-325d-4926-9db8-5228f59a3882}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Codebot\Testing\Codebot.Testing.vcxproj">
+      <Project>{e9ca1647-1751-4579-9184-8b81d00dff50}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

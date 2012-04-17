@@ -11,7 +11,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Codebot.Testing", "Codebot\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Codebot.Packages", "Codebot\Packages\Codebot.Packages.vcxproj", "{5640EB39-658E-4F79-AC7E-31BA2BD407BE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hello", "Hello\Hello.vcxproj", "{54B4401E-E5B8-4291-B941-297839DBBEBB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj", "{B11094C5-17C9-4E8B-9E7E-682FA467D88E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +39,10 @@ Global
 		{5640EB39-658E-4F79-AC7E-31BA2BD407BE}.Debug|Win32.Build.0 = Debug|Win32
 		{5640EB39-658E-4F79-AC7E-31BA2BD407BE}.Release|Win32.ActiveCfg = Release|Win32
 		{5640EB39-658E-4F79-AC7E-31BA2BD407BE}.Release|Win32.Build.0 = Release|Win32
-		{54B4401E-E5B8-4291-B941-297839DBBEBB}.Debug|Win32.ActiveCfg = Debug|Win32
-		{54B4401E-E5B8-4291-B941-297839DBBEBB}.Debug|Win32.Build.0 = Debug|Win32
-		{54B4401E-E5B8-4291-B941-297839DBBEBB}.Release|Win32.ActiveCfg = Release|Win32
-		{54B4401E-E5B8-4291-B941-297839DBBEBB}.Release|Win32.Build.0 = Release|Win32
+		{B11094C5-17C9-4E8B-9E7E-682FA467D88E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B11094C5-17C9-4E8B-9E7E-682FA467D88E}.Debug|Win32.Build.0 = Debug|Win32
+		{B11094C5-17C9-4E8B-9E7E-682FA467D88E}.Release|Win32.ActiveCfg = Release|Win32
+		{B11094C5-17C9-4E8B-9E7E-682FA467D88E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
