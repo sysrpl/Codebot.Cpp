@@ -1,7 +1,7 @@
-#include "Codebot/Packages/IO.h"
-#include "Codebot/Net/WebRequest.h"
-#include "Codebot/Net/MimeTypes.h"
-#include "Codebot/Text/StringStream.h"
+#include <Codebot/Packages/IO.h>
+#include <Codebot/Net/WebRequest.h>
+#include <Codebot/Net/MimeTypes.h>
+#include <Codebot/Text/StringStream.h>
 
 namespace Codebot
 {

@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B0F4DE16-325D-4926-9DB8-5228F59A3882}</ProjectGuid>
+    <RootNamespace>Codebot</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>c:\temp\Git\Codebot;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Collections\CollectionsExceptions.cpp" />
+    <ClCompile Include="Collections\Dictionary.cpp" />
+    <ClCompile Include="Console.cpp" />
+    <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="Interop\FileInterop.cpp" />
+    <ClCompile Include="Interop\Guid.cpp" />
+    <ClCompile Include="Interop\IInterface.cpp" />
+    <ClCompile Include="Interop\Interface.cpp" />
+    <ClCompile Include="Interop\InteropExceptions.cpp" />
+    <ClCompile Include="Interop\XmlInterop.cpp" />
+    <ClCompile Include="IO\Directory.cpp" />
+    <ClCompile Include="IO\File.cpp" />
+    <ClCompile Include="IO\FileFind.cpp" />
+    <ClCompile Include="IO\FileStream.cpp" />
+    <ClCompile Include="IO\IOExceptions.cpp" />
+    <ClCompile Include="IO\Path.cpp" />
+    <ClCompile Include="Math\MathTools.cpp" />
+    <ClCompile Include="Memory\Buffer.cpp" />
+    <ClCompile Include="Memory\MemoryStream.cpp" />
+    <ClCompile Include="Memory\MemoryTools.cpp" />
+    <ClCompile Include="NotifyEvent.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Stream.cpp" />
+    <ClCompile Include="String.cpp" />
+    <ClCompile Include="Text\Format.cpp" />
+    <ClCompile Include="Text\StringList.cpp" />
+    <ClCompile Include="Text\StringStream.cpp" />
+    <ClCompile Include="Text\Xml\Document.cpp" />
+    <ClCompile Include="Text\Xml\XmlExceptions.cpp" />
+    <ClCompile Include="Threading\Thread.cpp" />
+    <ClCompile Include="Throw.cpp" />
+    <ClCompile Include="Time\DateTime.cpp" />
+    <ClCompile Include="Time\TimeSpan.cpp" />
+    <ClCompile Include="ValueType.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="Array.h" />
+    <ClInclude Include="Collections\CollectionsExceptions.h" />
+    <ClInclude Include="Collections\Dictionary.h" />
+    <ClInclude Include="Collections\List.h" />
+    <ClInclude Include="Collections\ObjectList.h" />
+    <ClInclude Include="Console.h" />
+    <ClInclude Include="EventHandler.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="Flags.h" />
+    <ClInclude Include="IEnumerable.h" />
+    <ClInclude Include="IManagedType.h" />
+    <ClInclude Include="interop\coreinterop.h" />
+    <ClInclude Include="Interop\DateInterop.h" />
+    <ClInclude Include="Interop\FileInterop.h" />
+    <ClInclude Include="Interop\Guid.h" />
+    <ClInclude Include="Interop\IInterface.h" />
+    <ClInclude Include="Interop\Interface.h" />
+    <ClInclude Include="Interop\InteropExceptions.h" />
+    <ClInclude Include="interop\threadinterop.h" />
+    <ClInclude Include="Interop\XmlInterop.h" />
+    <ClInclude Include="IO\Directory.h" />
+    <ClInclude Include="IO\File.h" />
+    <ClInclude Include="IO\FileFind.h" />
+    <ClInclude Include="IO\FileStream.h" />
+    <ClInclude Include="IO\IOExceptions.h" />
+    <ClInclude Include="IO\Path.h" />
+    <ClInclude Include="IPersistent.h" />
+    <ClInclude Include="Macros.h" />
+    <ClInclude Include="Math\MathTools.h" />
+    <ClInclude Include="memory\buffer.h" />
+    <ClInclude Include="Memory\MemoryStream.h" />
+    <ClInclude Include="memory\memorytools.h" />
+    <ClInclude Include="NotifyEvent.h" />
+    <ClInclude Include="Nullable.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Property.h" />
+    <ClInclude Include="Ref.h" />
+    <ClInclude Include="Stream.h" />
+    <ClInclude Include="String.h" />
+    <ClInclude Include="text\format.h" />
+    <ClInclude Include="Text\StringList.h" />
+    <ClInclude Include="Text\StringStream.h" />
+    <ClInclude Include="Text\Xml\Document.h" />
+    <ClInclude Include="Text\Xml\XmlExceptions.h" />
+    <ClInclude Include="Threading\Thread.h" />
+    <ClInclude Include="Throw.h" />
+    <ClInclude Include="Time\DateTime.h" />
+    <ClInclude Include="Time\TimeSpan.h" />
+    <ClInclude Include="Types.h" />
+    <ClInclude Include="ValueType.h" />
+    <ClInclude Include="VectorEnumerator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

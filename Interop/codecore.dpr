@@ -85,7 +85,7 @@ exports
 	{ Other routines }
 	GuidCreate,
 	{ Xml interface }
-  XmlDocumentCreate,
+	XmlDocumentCreate,
 	XmlGetCreated,
 	XmlGetRefCount;
 	
@@ -93,5 +93,3 @@ begin
 	SetExceptionMask([exInvalidOp, exDenormalized, exZeroDivide, 
 		exOverflow, exUnderflow, exPrecision]); 
 end.
-
-

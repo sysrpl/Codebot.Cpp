@@ -146,7 +146,58 @@ namespace Hex
 
 namespace Base64
 {
-	static const Char Fill = '=';
+	String Encode(Byte* buffer, Cardinal size)
+	{
+		static Char hex[] = "0123456789ABCDEF";
+		String s;
+		Cardinal length = size;
+		if (length == 0)
+			return s;
+		s.Length(length * 2);
+		Byte* b = (Byte*)buffer;
+		Char* c = &s[0];
+		while (length > 0)
+		{
+			*c++ = hex[*b >> 0x4];
+			*c++ = hex[*b & 0xF];
+			b++;
+			length--;
+		}
+		return s;
+	}
+
+	String Encode(const Buffer& buffer)
+	{
+		return Encode((Byte*)buffer, buffer.Size());
+	}
+
+	Buffer Decode(const String& s)
+	{
+		Cardinal length = s.Length();
+		if (IsOdd(length))
+			ThrowArgumentException(ThisMethod, s);
+		if (length == 0)
+			return Buffer();
+		Buffer buffer(length >> 1);
+		Byte* b = buffer;
+		Char* c = &Var(s)[0];
+		while (length > 0)
+		{
+			Boolean odd = IsOdd(length);
+			if (CharInSet(*c, '0', '9'))
+				*b = odd ? *b | (*c - '0') : (*c - '0') << 0x4;
+			else if (CharInSet(*c, 'A', 'F'))
+				*b = odd ? *b | (*c - 'A' + 0xA) : (*c - 'A' + 0xA) << 0x4;
+			else
+				ThrowArgumentException(ThisMethod, s);
+			if (odd)
+				b++;
+			length--;
+			c++;
+		}
+		return buffer;
+	}
+	/*static const Char Fill = '=';
 
 	static const String Convert =
 			"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -226,7 +277,7 @@ namespace Base64
 	    }
 	  }
 	  return buffer;
-	}
+	}*/
 }
 
 }

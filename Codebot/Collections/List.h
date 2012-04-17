@@ -10,7 +10,9 @@ namespace Collections
 
 // List<T> 
 
-enum class ListDuplicate
+// TODO: Eventually use strong enum class after MSVC gets support
+
+enum ListDuplicate
 {
 	Allow,
 	Ignore,
