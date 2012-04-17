@@ -177,7 +177,7 @@ Socket::~Socket()
 
 void Socket::Close()
 {
-	// TODO: Fix this please
+	// TODO: Fix this ... okay
 	if (handle == INVALID_SOCKET)
 		return;
 	Handle h = handle;
