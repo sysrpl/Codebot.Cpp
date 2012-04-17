@@ -1,6 +1,8 @@
 unit CoreTools;
 
+{$ifdef fpc}
 {$mode delphi}
+{$endif}
 
 interface
 
@@ -43,6 +45,11 @@ function DirectoryRename(OldName, NewName: PAnsiChar): Boolean; cdecl;
 procedure GuidCreate(out Guid: TGUID); cdecl;
 
 implementation
+
+{$ifndef fpc}
+uses
+  Windows;
+{$endif}
 
 { Command line information }
 

@@ -1,30 +1,35 @@
 library codecore;
 
+{$ifdef fpc}
+{$mode delphi}
+{$endif}
+
 uses
-  MathTools in 'MathTools.pas',
-  CoreTools in 'CoreTools.pas',
-  DateTools in 'DateTools.pas',
-  ShareTools in 'ShareTools.pas';
+	{$IFDEF UNIX}
+	cthreads,
+	{$ENDIF}
+	Math,
+	ShareTools in 'sharetools.pas',
+	CoreTools in 'coretools.pas',
+	FileTools  in 'filetools.pas',
+	TimeTools in 'timetools.pas',
+	ThreadTools in 'threadtools.pas',
+	XmlTools in 'xmltools.pas',
+	MathTools in 'mathtools.pas';
 
 exports
-  { Command line information }
-  CommandLineCount,
-  CommandLineArgument,
+	{ Command line information }
+	CommandLineCount,
+	CommandLineArgument,
 	{ Basic type parsing routines }
 	IntegerParse,
 	SingleParse,
 	DoubleParse,
-	{ Module routines }
-	ModuleLoad,
-	ModuleUnload,
-  ModuleFindProc,
 	{ Atomic functions }
 	AtomicIncrement,
 	AtomicDecrement,
 	{ File routines }
 	FileExists,
-	FileSize,
-	FileCopy,
 	FileDelete,
 	FileRename,
 	{ Directory routines }
@@ -34,9 +39,8 @@ exports
 	DirectoryCreate,
 	DirectoryDelete,
 	DirectoryRename,
-	{ Path routines }
-	PathCombine,
-	PathExists,
+	{ FileFind interface }
+	FileFindCreate,
 	{ Time routines }
 	TimeParse,
 	TimeNow,
@@ -68,19 +72,26 @@ exports
 	{ Extraction of Date and Time values }
 	YearOfDate,
 	MonthOfYear,
-	MonthFirstDay,
 	MonthLastDay,
 	MonthFirstDate,
 	MonthLastDate,
 	DayOfYear,
 	DayOfMonth,
 	DayOfWeek,
-  { Threading }
-  ThreadStart,
-  ThreadWait,
-  ThreadSleep,
-  { Other routines }
-  GuidCreate;
-
+	{ Threading }
+	ThreadStart,
+	ThreadWait,
+	ThreadSleep,
+	{ Other routines }
+	GuidCreate,
+	{ Xml interface }
+  XmlDocumentCreate,
+	XmlGetCreated,
+	XmlGetRefCount;
+	
 begin
+	SetExceptionMask([exInvalidOp, exDenormalized, exZeroDivide, 
+		exOverflow, exUnderflow, exPrecision]); 
 end.
+
+

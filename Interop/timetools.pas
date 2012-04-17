@@ -1,6 +1,8 @@
 unit TimeTools;
 
+{$ifdef fpc}
 {$mode delphi}
+{$endif}
 
 interface
 
