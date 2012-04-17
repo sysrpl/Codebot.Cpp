@@ -31,7 +31,7 @@ typedef unsigned long Result;
 
 class String;
 
-#define Char char
+typedef char Char;
 #define PChar char*
 #define null nullptr
 

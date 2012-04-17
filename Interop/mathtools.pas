@@ -1,6 +1,8 @@
 unit MathTools;
 
+{$ifdef fpc}
 {$mode delphi}
+{$endif}
 
 interface
 

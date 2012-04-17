@@ -4,7 +4,9 @@
 namespace Codebot
 {
 
-enum class StreamOrigin
+// TODO: Eventually use strong enum class after MSVC gets support
+
+enum StreamOrigin
 {
 	Begin,
 	Current,

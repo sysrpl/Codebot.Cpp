@@ -10,7 +10,9 @@ namespace Codebot
 namespace IO
 {
 
-enum class FileAttribute
+// TODO: Eventually use strong enum class after MSVC gets support
+
+enum FileAttribute
 {
 	File = 0,
 	ReadOnly = 1,

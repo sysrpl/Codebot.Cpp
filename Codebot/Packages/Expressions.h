@@ -1,2 +1,2 @@
 #pragma once
-#include "Codebot/Expressions/Query.h"
+#include <Codebot/Expressions/Query.h>

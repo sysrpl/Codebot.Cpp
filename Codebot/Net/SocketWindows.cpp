@@ -1,6 +1,6 @@
-#include "Codebot/Types.h"
+#include <Codebot/Types.h>
 #ifdef WindowsOS
-#include "Codebot/Net/Socket.h"
+#include <Codebot/Net/Socket.h>
 #include <WinSock2.h>
 
 namespace Codebot

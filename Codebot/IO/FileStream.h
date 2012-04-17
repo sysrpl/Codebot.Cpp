@@ -8,7 +8,9 @@ namespace Codebot
 namespace IO
 {
 
-enum class FileMode
+// TODO: Eventually use strong enum class after MSVC gets support
+
+enum FileMode
 {
 	Read = 1,
 	Write = Read << 1,

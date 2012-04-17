@@ -1,4 +1,4 @@
-#include "Codebot/Net/Url.h"
+#include <Codebot/Net/Url.h>
 
 namespace Codebot
 {
@@ -94,7 +94,8 @@ String Url::ToFormat(const String& format) const
 
 Boolean Url::FromFormat(const String& value, const String& format)
 {
-	return data = value;
+	data = value;
+	return true;
 }
 
 }

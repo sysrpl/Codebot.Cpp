@@ -1,6 +1,8 @@
 unit ShareTools;
 
+{$ifdef fpc}
 {$mode delphi}
+{$endif}
 
 interface
 

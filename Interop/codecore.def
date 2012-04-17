@@ -5,14 +5,9 @@ CommandLineArgument
 IntegerParse
 SingleParse
 DoubleParse
-ModuleLoad
-ModuleUnload
-ModuleFindProc
 AtomicIncrement
 AtomicDecrement
 FileExists
-FileSize
-FileCopy
 FileDelete
 FileRename
 DirectoryExists
@@ -21,8 +16,7 @@ DirectoryChange
 DirectoryCreate
 DirectoryDelete
 DirectoryRename
-PathCombine
-PathExists
+FileFindCreate
 TimeParse
 TimeNow
 TimeDecode
@@ -51,7 +45,6 @@ DayLongName
 DayShortName
 YearOfDate
 MonthOfYear
-MonthFirstDay
 MonthLastDay
 MonthFirstDate
 MonthLastDate
@@ -62,3 +55,6 @@ ThreadStart
 ThreadWait
 ThreadSleep
 GuidCreate
+XmlDocumentCreate
+XmlGetCreated
+XmlGetRefCount

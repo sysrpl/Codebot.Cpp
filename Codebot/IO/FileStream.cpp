@@ -13,7 +13,7 @@ FileStream::FileStream(const String& fileName, FileModes mode)
 {
 	try
 	{
-		auto m = fstream::binary;
+		Integer m = fstream::binary;
 		if (mode.Contains(FileMode::Read))
 			m = m | fstream::in;
 		if (mode.Contains(FileMode::Write))

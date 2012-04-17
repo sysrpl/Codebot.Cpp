@@ -1,6 +1,8 @@
 unit FileTools; 
 
+{$ifdef fpc}
 {$mode delphi}
+{$endif}
 
 interface
 

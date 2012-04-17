@@ -1,5 +1,65 @@
 uses
+  Windows,
+  ActiveX,
+  SysUtils,
+  ComObj,
   MSXMLParser;
+
+type
+  TInterfacedImpl = class(TObject, IInterface)
+  protected
+    FRefCount: Integer;
+    function QueryInterface(const IID: TGUID; out Obj): HResult; stdcall;
+    function _AddRef: Integer; stdcall;
+    function _Release: Integer; stdcall;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    class function NewInstance: TObject; override;
+    property RefCount: Integer read FRefCount;
+  end;
+
+procedure TInterfacedImpl.AfterConstruction;
+begin
+  InterlockedDecrement(XmlRefCount);
+  InterlockedDecrement(FRefCount);
+end;
+
+procedure TInterfacedImpl.BeforeDestruction;
+begin
+  if RefCount <> 0 then
+    System.Error(reInvalidPtr);
+end;
+
+class function TInterfacedImpl.NewInstance: TObject;
+begin
+  Result := inherited NewInstance;
+  InterlockedIncrement(XmlCreated);
+  InterlockedIncrement(XmlRefCount);
+  TInterfacedImpl(Result).FRefCount := 1;
+end;
+
+function TInterfacedImpl.QueryInterface(const IID: TGUID; out Obj): HResult;
+begin
+  if GetInterface(IID, Obj) then
+    Result := 0
+  else
+    Result := E_NOINTERFACE;
+end;
+
+function TInterfacedImpl._AddRef: Integer;
+begin
+  InterlockedIncrement(XmlRefCount);
+  Result := InterlockedIncrement(FRefCount);
+end;
+
+function TInterfacedImpl._Release: Integer;
+begin
+  InterlockedDecrement(XmlRefCount);
+  Result := InterlockedDecrement(FRefCount);
+  if Result = 0 then
+    Destroy;
+end;
 
 type
   TDocument = class;
@@ -7,7 +67,7 @@ type
 
 { TNode }
 
-  TNode = class(TInterfacedObject, INode)
+  TNode = class(TInterfacedImpl, INode)
   private
     FNode: IXMLDOMNode;
   protected
@@ -22,13 +82,15 @@ type
     function GetName: PAnsiChar; stdcall;
     function GetText: PAnsiChar; stdcall;
     procedure SetText(Value: PAnsiChar); stdcall;
+    function GetXml: PAnsiChar; stdcall;
+    procedure SetXml(Value: PAnsiChar); stdcall;
   public
     constructor Create(Node: IXMLDOMNode);
   end;
 
 { TNodeList }
 
-  TNodeList = class(TInterfacedObject, INodeList)
+  TNodeList = class(TInterfacedImpl, INodeList)
   private
     FNode: IXMLDOMNode;
     FList: IInterface;
@@ -104,7 +166,7 @@ var
 begin
   Node := nil;
   try
-    N := FNode.selectSingleNode(StrPas(XPath));
+    N := FNode.selectSingleNode(PCharToStr(XPath));
     Result := N <> nil;
     if Result then
       Node := TNode.Create(N);
@@ -119,7 +181,7 @@ var
 begin
   List := nil;
   try
-    L := FNode.selectNodes(StrPas(XPath));
+    L := FNode.selectNodes(PCharToStr(XPath));
     Result := L <> nil;
     if Result then
       List := TNodeList.Create(nil, L) ;
@@ -175,9 +237,9 @@ end;
 
 procedure TNode.SetText(Value: PAnsiChar);
 var
-  S: AnsiStrng;
+  S: AnsiString;
 begin
-  S := StrPas(Value);
+  S := PCharToStr(Value);
   case FNode.nodeType of
     NODE_ELEMENT:
       (FNode as IXMLDOMElement).text := S;
@@ -190,6 +252,28 @@ begin
   else
     FNode.nodeValue := S;
   end;
+end;
+
+function TNode.GetXml: PAnsiChar;
+begin
+  case FNode.nodeType of
+    NODE_ELEMENT,
+    NODE_ATTRIBUTE,
+    NODE_TEXT,
+    NODE_DOCUMENT:
+      Return(Result, FNode.xml);
+  else
+    Return(Result, '');
+  end;
+end;
+
+procedure TNode.SetXml(Value: PAnsiChar);
+var
+  S: AnsiString;
+begin
+  S := PCharToStr(Value);
+  if FNode.nodeType = NODE_DOCUMENT then
+      (FNode as IXMLDOMDocument).loadXML(S);
 end;
 
 { TNodeList }
@@ -234,7 +318,7 @@ procedure TNodeList.Add(Name: PAnsiChar; out Node: INode);
 var
   D: IXMLDOMDocument;
   N: IXMLDOMNode;
-  S: AnsiStrng;
+  S: AnsiString;
 begin
   Node := nil;
   if FNode = nil then
@@ -242,7 +326,7 @@ begin
   D := FNode.ownerDocument;
   if D = nil then
     Exit;
-  S := StrPas(Name);
+  S := PCharToStr(Name);
   if Supports(FList, IXMLDOMNodeList) then
   begin
     N := D.createElement(S);
@@ -287,11 +371,11 @@ var
   C: IXMLDOMElement;
   L: IXMLDOMNodeList;
   I: Integer;
-  S: AnsiStrng;
+  S: AnsiString;
 begin
   Node := nil;
   N := nil;
-  S := StrPas(Name);
+  S := PCharToStr(Name);
   if Supports(FList, IXMLDOMNamedNodeMap) then
     (FList as IXMLDOMNamedNodeMap).getNamedItem(S)
   else
@@ -365,12 +449,12 @@ end;
 
 procedure TDocument.Load(FileName: PAnsiChar);
 begin
-  FDocument.load(StrPas(FileName));
+  FDocument.load(PCharToStr(FileName));
 end;
 
 procedure TDocument.Save(FileName: PAnsiChar);
 begin
-  FDocument.save(StrPas(FileName));
+  FDocument.save(PCharToStr(FileName));
 end;
 
 { DocumentCreate }

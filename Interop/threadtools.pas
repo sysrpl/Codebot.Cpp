@@ -1,6 +1,8 @@
 unit ThreadTools;
 
+{$ifdef fpc}
 {$mode delphi}
+{$endif}
 
 interface
 
