@@ -17,7 +17,7 @@ struct FormatSection
 
 Array<FormatSection> ParseFormat(const String& s);
 
-#pragma message(Reminder "consider FormatValue(more integral types)")
+//  TODO: Consider FormatValue(more integral types)
 
 String FormatValue(const char value[], const String& format);
 String FormatValue(const Integer& value, const String& format);
@@ -27,7 +27,7 @@ String FormatValue(const Boolean& value, const String& format);
 String FormatValue(const ValueType& value, const String& format);
 String FormatValue(const ValueType* value, const String& format);
 
-#pragma message(Reminder "Test the change in format ValueType")
+// TODO: Consider adding more type traits
 
 template <typename T>
 typename std::enable_if<std::is_base_of<ValueType, T>::value, String>::type
@@ -43,7 +43,6 @@ FormatValue(const T& value, const String& format)
 { 
 	return AnyToStr(value);
 }
-
 
 template <typename C, typename T, bool B>
 String FormatValue(const Property<C, T, B>& prop, const String& format)
@@ -89,7 +88,6 @@ String Format(const String& s, const A0& a0, const A1& a1, const A2& a2,
 				item.Clear();
 				break;
 		}
-		//if (!item.IsEmpty() && (section.Padding != 0))
 		if (section.Padding != 0)
 			item = item.SubString(0, Abs(section.Padding));
 		result += item.Pad(' ', section.Padding);

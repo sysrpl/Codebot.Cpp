@@ -11,6 +11,7 @@ class StringList : public Collections::List<String>, public IPersistent, public 
 {
 public:
 	StringList();
+	// Properties
 	String Text() const;
 	void Text(const String& value);
 	// IPersistent

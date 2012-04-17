@@ -13,7 +13,11 @@ FileStream::FileStream(const String& fileName, FileModes mode)
 {
 	try
 	{
+		#ifdef GCC
+		auto m = fstream::binary;
+		#else
 		Integer m = fstream::binary;
+		#endif
 		if (mode.Contains(FileMode::Read))
 			m = m | fstream::in;
 		if (mode.Contains(FileMode::Write))

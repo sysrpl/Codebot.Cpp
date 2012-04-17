@@ -5,7 +5,8 @@ namespace Codebot
 namespace Memory
 {
 
-#pragma message(Reminder "test MemCompare()")
+// TODO: Write tests for memory functions
+
 Boolean MemCompare(Pointer a, Pointer b, Cardinal size)
 {
 	if (size == 0)
@@ -13,7 +14,6 @@ Boolean MemCompare(Pointer a, Pointer b, Cardinal size)
 	return std::equal((Byte*)a, (Byte*)a + size, (Byte*)b);
 }
 
-#pragma message(Reminder "test MemCopy()")
 void MemCopy(Pointer source, Pointer dest, Cardinal size)
 {
 	if (size == 0)
@@ -21,7 +21,6 @@ void MemCopy(Pointer source, Pointer dest, Cardinal size)
 	std::copy((Byte*)source, (Byte*)source + size, (Byte*)dest);
 }
 
-#pragma message(Reminder "test MemZero()")
 void MemZero(Pointer p, Cardinal size)
 {
 	if (size == 0)

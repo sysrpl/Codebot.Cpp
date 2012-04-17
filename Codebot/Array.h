@@ -6,8 +6,6 @@ namespace Codebot
 
 // Array<T, Integer> 
 
-#pragma message(Reminder "Test IEnumerable<T>")
-
 template <typename T>
 class Array : public ValueType, public IArray<T, Integer>, public IEnumerable<T>
 {

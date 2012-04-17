@@ -84,4 +84,51 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<filteredResources>
+		<filter>
+			<id>1334687874962</id>
+			<name></name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-true-false-Expressions</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1334687874965</id>
+			<name></name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-true-false-Net</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1334687874966</id>
+			<name></name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-true-false-Packages</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1334687874975</id>
+			<name></name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-true-false-Testing</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1334687874983</id>
+			<name></name>
+			<type>6</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-true-false-*vcxproj*</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>

@@ -39,13 +39,13 @@ VectorEnumerator<T>::VectorEnumerator(const std::vector<T>& v)
 template <typename T>
 void VectorEnumerator<T>::_Lock()
 {
-	Codebot::Interop::AtomicIncrement(count);
+	Interop::AtomicIncrement(count);
 }
 
 template <typename T>
 void VectorEnumerator<T>::_Unlock()
 {
-	if (Codebot::Interop::AtomicDecrement(count) == 0)
+	if (Interop::AtomicDecrement(count) == 0)
 		delete this;
 }
 
