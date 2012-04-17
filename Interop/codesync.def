@@ -1,0 +1,8 @@
+LIBRARY codesync.dll
+EXPORTS
+ThreadStart
+ThreadWait
+ThreadSuspend
+ThreadResume
+ThreadSync
+Sleep
