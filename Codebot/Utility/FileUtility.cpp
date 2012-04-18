@@ -63,18 +63,18 @@ void ForEachFolder(const String& path, Func<void(const String&)> func)
 void ForEveryLine(const String& path, const String& wildcards,
 	Func<Boolean(const String&, String&)> func, Boolean recursive)
 {
-	ForEachFolder(path, [&] (String folder)
+	ForEachFile(path, wildcards, [&] (String file)
 	{
-		ForEachFile(folder, wildcards, [&] (String file)
+		ForEachLine(file, [&] (String& line)
 		{
-			ForEachLine(file, [&] (String& line)
-			{
-					return func(file, line);
-			});
+				return func(file, line);
 		});
-		if (recursive)
-			ForEveryLine(folder, wildcards, func, recursive);
 	});
+	if (recursive)
+		ForEachFolder(path, [&] (String folder)
+		{
+			ForEveryLine(folder, wildcards, func, recursive);
+		});
 }
 
 void FileSearch(const String& path, const String& wildcards, const String& pattern, Boolean recursive)
@@ -97,7 +97,8 @@ void FileSearch(const String& path, const String& wildcards, const String& patte
 			if (changed)
 				WriteLine("\nIn file {0}", file);
 			changed = false;
-			WriteLine("line {0}: {1}", i, line);
+			WriteLine("line {0}: {1}", i,
+				line.Replace(pattern, "\033[1;32m" + pattern + "\033[0m"));
 		}
 		return false;
 	}, recursive);
