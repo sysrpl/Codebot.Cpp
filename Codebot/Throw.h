@@ -1,5 +1,5 @@
 #pragma once
-#include "Codebot/Types.h"
+#include <Codebot/Types.h>
 
 namespace Codebot
 {

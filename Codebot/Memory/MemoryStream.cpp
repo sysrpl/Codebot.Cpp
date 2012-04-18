@@ -1,5 +1,5 @@
-#include "Codebot/Memory/MemoryStream.h"
-#include "Codebot/Memory/MemoryTools.h"
+#include <Codebot/Memory/MemoryStream.h>
+#include <Codebot/Memory/MemoryTools.h>
 
 namespace Codebot
 {

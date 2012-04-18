@@ -1,4 +1,4 @@
-#include "Codebot/NotifyEvent.h"
+#include <Codebot/NotifyEvent.h>
 
 namespace Codebot
 {

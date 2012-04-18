@@ -1,7 +1,7 @@
 #pragma once
-#include "Codebot/ValueType.h"
-#include "Codebot/String.h"
-#include "Codebot/Console.h"
+#include <Codebot/ValueType.h>
+#include <Codebot/String.h>
+#include <Codebot/Console.h>
 
 namespace Codebot
 {

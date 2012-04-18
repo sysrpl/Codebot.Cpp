@@ -1,7 +1,7 @@
-#include "Codebot/Application.h"
-#include "Codebot/Exception.h"
-#include "Codebot/Console.h"
-#include "Codebot/Interop/CoreInterop.h"
+#include <Codebot/Application.h>
+#include <Codebot/Exception.h>
+#include <Codebot/Console.h>
+#include <Codebot/Interop/CoreInterop.h>
 
 namespace Codebot
 {

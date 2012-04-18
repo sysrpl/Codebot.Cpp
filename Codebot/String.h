@@ -1,5 +1,5 @@
 #pragma once
-#include "Codebot/Array.h"
+#include <Codebot/Array.h>
 
 namespace Codebot
 {

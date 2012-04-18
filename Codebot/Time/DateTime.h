@@ -1,6 +1,6 @@
 #pragma once
-#include "Codebot/Time/TimeSpan.h"
-#include "Codebot/Interop/DateInterop.h"
+#include <Codebot/Time/TimeSpan.h>
+#include <Codebot/Interop/DateInterop.h>
 
 namespace Codebot
 {

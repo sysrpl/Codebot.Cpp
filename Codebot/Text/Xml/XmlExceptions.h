@@ -1,5 +1,5 @@
 #pragma once
-#include "Codebot/Exception.h"
+#include <Codebot/Exception.h>
 
 namespace Codebot
 {

@@ -1,6 +1,6 @@
 #pragma once
-#include "Codebot/Property.h"
-#include "Codebot/String.h"
+#include <Codebot/Property.h>
+#include <Codebot/String.h>
 
 namespace Codebot
 {

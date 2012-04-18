@@ -1,7 +1,7 @@
 #pragma once
-#include "Codebot/Collections/CollectionsExceptions.h"
-#include "Codebot/Object.h"
-#include "Codebot/VectorEnumerator.h"
+#include <Codebot/Collections/CollectionsExceptions.h>
+#include <Codebot/Object.h>
+#include <Codebot/VectorEnumerator.h>
 
 namespace Codebot
 {

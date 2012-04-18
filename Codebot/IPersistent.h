@@ -1,5 +1,5 @@
 #pragma once
-#include "Codebot/Stream.h"
+#include <Codebot/Stream.h>
 
 namespace Codebot
 {

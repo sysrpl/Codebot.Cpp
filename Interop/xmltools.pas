@@ -44,6 +44,7 @@ type
 
   IDocument = interface(INode)
     ['{B713CB91-C809-440A-83D1-C42BDF806C4A}']
+    procedure Beautify; stdcall;
     procedure CreateAttribute(const Name: PAnsiChar; out Node: INode); stdcall;
     procedure CreateElement(const Name: PAnsiChar; out Node: INode); stdcall;
     procedure SetRoot(Node: INode); stdcall;

@@ -1,6 +1,6 @@
 #pragma once
-#include "Codebot/Exception.h"
-#include "Codebot/Text/Format.h"
+#include <Codebot/Exception.h>
+#include <Codebot/Text/Format.h>
 
 namespace Codebot
 {

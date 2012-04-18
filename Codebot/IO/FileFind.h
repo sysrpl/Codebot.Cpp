@@ -1,9 +1,9 @@
 #pragma once
-#include "Codebot/Flags.h"
-#include "Codebot/String.h"
-#include "Codebot/Interop/Interface.h"
-#include "Codebot/Interop/FileInterop.h"
-#include "Codebot/Time/DateTime.h"
+#include <Codebot/Flags.h>
+#include <Codebot/String.h>
+#include <Codebot/Interop/Interface.h>
+#include <Codebot/Interop/FileInterop.h>
+#include <Codebot/Time/DateTime.h>
 
 namespace Codebot
 {

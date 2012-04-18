@@ -1,5 +1,5 @@
 #pragma once
-#include "Codebot/Throw.h"
+#include <Codebot/Throw.h>
 
 namespace Codebot
 {

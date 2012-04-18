@@ -399,6 +399,36 @@ begin
 		xmlAddChild(Node, C);
 	end;
 end;
+
+procedure xmlRemoveEmptyText(Node: xmlNodePtr);
+var
+	N, B: xmlNodePtr;
+	S: AnsiString;
+begin
+	if Node = nil then
+		Exit;
+	N := xmlFirstTextChild(Node);
+	while N <> nil do
+	begin
+		S := xmlNodeGetContent(N);
+		S := StrTrim(xmlNodeGetContent(N));
+		if S = '' then
+		begin
+			B := xmlNextTextSibling(N);
+			xmlUnlinkNode(N);
+			xmlFreeNode(N);
+			N := B;
+		end
+		else
+			N := xmlNextTextSibling(N);
+	end;
+	N := xmlFirstElementChild(Node);
+	while N <> nil do
+	begin
+		xmlRemoveEmptyText(N);
+		N := xmlNextElementSibling(N);
+	end;
+end;
 {$endregion}
 
 type
@@ -474,6 +504,7 @@ type
 		procedure SetDocument(Value: xmlDocPtr);
     property Document: xmlDocPtr read GetDocument write SetDocument;
   protected
+    procedure Beautify; stdcall;
     procedure CreateAttribute(const Name: PAnsiChar; out Node: INode); stdcall;
     procedure CreateElement(const Name: PAnsiChar; out Node: INode); stdcall;
     procedure SetRoot(Node: INode); stdcall;
@@ -891,6 +922,12 @@ begin
 	FNode := xmlNodePtr(Value);
 	if FNode = nil then
 		FNode := xmlNodePtr(xmlNewDoc('1.0'));
+end;
+
+procedure TDocument.Beautify; 
+begin
+	xmlRemoveEmptyText(FNode);
+	xmlFormatDocument(xmlFirstElementChild(FNode), NewLine);
 end;
 
 procedure TDocument.CreateAttribute(const Name: PAnsiChar; out Node: INode);

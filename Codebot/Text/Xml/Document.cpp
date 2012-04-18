@@ -1,8 +1,8 @@
-#include "Codebot/Text/Xml/Document.h"
-#include "Codebot/Text/Xml/XmlExceptions.h"
-#include "Codebot/Interop/CoreInterop.h"
-#include "Codebot/Memory/Buffer.h"
-#include "Codebot/VectorEnumerator.h"
+#include <Codebot/Text/Xml/Document.h>
+#include <Codebot/Text/Xml/XmlExceptions.h>
+#include <Codebot/Interop/CoreInterop.h>
+#include <Codebot/Memory/Buffer.h>
+#include <Codebot/VectorEnumerator.h>
 
 namespace Codebot
 {
@@ -625,11 +625,7 @@ Document& Document::operator = (const String& s)
 
 void Document::Beautify()
 {
-	static String oldAngle = "><";
-	static String newAngle = ">\n<";
-	String s = document->GetText();
-	s = s.Replace(oldAngle, newAngle);
-	document->SetText(s);
+	document->Beautify();
 }
 
 Attribute Document::CreateAttribute(const String& name) const

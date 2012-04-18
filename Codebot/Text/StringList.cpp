@@ -1,6 +1,6 @@
-#include "Codebot/Text/StringList.h"
-#include "Codebot/Text/StringStream.h"
-#include "Codebot/IO/FileStream.h"
+#include <Codebot/Text/StringList.h>
+#include <Codebot/Text/StringStream.h>
+#include <Codebot/IO/FileStream.h>
 
 namespace Codebot
 {

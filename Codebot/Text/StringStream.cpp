@@ -1,5 +1,5 @@
-#include "Codebot/Text/StringStream.h"
-#include "Codebot/Memory/MemoryTools.h"
+#include <Codebot/Text/StringStream.h>
+#include <Codebot/Memory/MemoryTools.h>
 
 namespace Codebot
 {

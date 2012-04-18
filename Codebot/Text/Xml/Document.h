@@ -1,10 +1,10 @@
 #pragma once
-#include "Codebot/Nullable.h"
-#include "Codebot/Interop/Interface.h"
-#include "Codebot/Interop/XmlInterop.h"
-#include "Codebot/Time/DateTime.h"
-#include "Codebot/Stream.h"
-#include "Codebot/IEnumerable.h"
+#include <Codebot/Nullable.h>
+#include <Codebot/Interop/Interface.h>
+#include <Codebot/Interop/XmlInterop.h>
+#include <Codebot/Time/DateTime.h>
+#include <Codebot/Stream.h>
+#include <Codebot/IEnumerable.h>
 
 namespace Codebot
 {
@@ -151,7 +151,6 @@ public:
 	String operator ()() const;
 	Document& operator ()(const String& s);
 	Document& operator = (const String& s);
-	// TODO: Move Beautify to Interop
 	void Beautify();
 	Attribute CreateAttribute(const String& name) const;
 	Node CreateNode(const String& name) const;

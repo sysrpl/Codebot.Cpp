@@ -1,5 +1,5 @@
 #pragma once
-#include "Codebot/Collections/Dictionary.h"
+#include <Codebot/Collections/Dictionary.h>
 
 namespace Codebot
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Codebot/Interop/Guid.h"
+#include <Codebot/Interop/Guid.h>
 
 namespace Codebot
 {

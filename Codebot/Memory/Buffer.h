@@ -1,6 +1,6 @@
 #pragma once
-#include "Codebot/String.h"
-#include "Codebot/Memory/MemoryTools.h"
+#include <Codebot/String.h>
+#include <Codebot/Memory/MemoryTools.h>
 
 namespace Codebot
 {

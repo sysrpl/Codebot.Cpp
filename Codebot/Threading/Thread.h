@@ -1,5 +1,5 @@
 #pragma once
-#include "Codebot/Object.h"
+#include <Codebot/Object.h>
 
 namespace Codebot
 {

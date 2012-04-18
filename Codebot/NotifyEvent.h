@@ -1,6 +1,6 @@
 #pragma once
-#include "Codebot/Object.h"
-#include "Codebot/EventHandler.h"
+#include <Codebot/Object.h>
+#include <Codebot/EventHandler.h>
 
 namespace Codebot
 {

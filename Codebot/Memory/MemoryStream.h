@@ -1,6 +1,6 @@
 #pragma once
-#include "Codebot/Stream.h"
-#include "Codebot/Memory/Buffer.h"
+#include <Codebot/Stream.h>
+#include <Codebot/Memory/Buffer.h>
 
 namespace Codebot
 {

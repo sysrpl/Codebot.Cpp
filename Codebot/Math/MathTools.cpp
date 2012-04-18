@@ -1,5 +1,5 @@
 #include <cmath>
-#include "Codebot/Math/MathTools.h"
+#include <Codebot/Math/MathTools.h>
 
 namespace Codebot
 {

@@ -1,6 +1,6 @@
-#include "Codebot/Interop/Guid.h"
-#include "Codebot/Memory/Buffer.h"
-#include "Codebot/Memory/MemoryTools.h"
+#include <Codebot/Interop/Guid.h>
+#include <Codebot/Memory/Buffer.h>
+#include <Codebot/Memory/MemoryTools.h>
 
 namespace Codebot
 {

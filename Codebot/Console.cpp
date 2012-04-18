@@ -1,4 +1,4 @@
-#include "Codebot/Console.h"
+#include <Codebot/Console.h>
 
 namespace Codebot
 {

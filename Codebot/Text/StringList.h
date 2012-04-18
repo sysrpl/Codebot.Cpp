@@ -1,6 +1,6 @@
 #pragma once
-#include "Codebot/Collections/List.h"
-#include "Codebot/IPersistent.h"
+#include <Codebot/Collections/List.h>
+#include <Codebot/IPersistent.h>
 
 namespace Codebot
 {

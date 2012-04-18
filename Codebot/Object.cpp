@@ -1,5 +1,5 @@
-#include "Codebot/Object.h"
-#include "Codebot/Interop/CoreInterop.h"
+#include <Codebot/Object.h>
+#include <Codebot/Interop/CoreInterop.h>
 
 namespace Codebot
 {

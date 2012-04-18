@@ -1,7 +1,7 @@
 #pragma once
 #include <fstream>
-#include "Codebot/Stream.h"
-#include "Codebot/Flags.h"
+#include <Codebot/Stream.h>
+#include <Codebot/Flags.h>
 
 namespace Codebot
 {

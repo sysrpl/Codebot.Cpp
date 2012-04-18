@@ -1,6 +1,6 @@
-#include "Codebot/Throw.h"
-#include "Codebot/Exception.h"
-#include "Codebot/Text/Format.h"
+#include <Codebot/Throw.h>
+#include <Codebot/Exception.h>
+#include <Codebot/Text/Format.h>
 
 namespace Codebot
 {

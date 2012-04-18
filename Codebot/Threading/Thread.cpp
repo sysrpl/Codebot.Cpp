@@ -1,5 +1,5 @@
-#include "Codebot/Threading/Thread.h"
-#include "Codebot/Interop/ThreadInterop.h"
+#include <Codebot/Threading/Thread.h>
+#include <Codebot/Interop/ThreadInterop.h>
 
 namespace Codebot
 {

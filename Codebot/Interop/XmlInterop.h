@@ -1,5 +1,5 @@
 #pragma once
-#include "Codebot/Interop/IInterface.h"
+#include <Codebot/Interop/IInterface.h>
 
 namespace Codebot
 {
@@ -43,6 +43,7 @@ struct INodeList : public IInterface
 struct IDocument : public INode
 {
 	static const Guid Id;
+	virtual void stdcall Beautify() = 0;
 	virtual void stdcall CreateAttribute(const PChar name, INode*& attribute) = 0;
 	virtual void stdcall CreateElement(const PChar name, INode*& element) = 0;
 	virtual void stdcall SetRoot(INode* element) = 0;
