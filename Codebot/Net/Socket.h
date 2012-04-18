@@ -73,6 +73,7 @@ public:
 	Integer Write(Pointer data, Cardinal size);	
 	Boolean Read(String& text);
 	Boolean Write(const String& text);	
+	// Properties
 	const AddressName& Address() const;
 	Word Port() const;
 	SocketState State() const;

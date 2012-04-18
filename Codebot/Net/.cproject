@@ -32,7 +32,7 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.322020413" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.other.other.1988383292" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -std=c++0x -lpthread" valueType="string"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1213754685" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/delluser/workspace"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.782901682" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

@@ -30,12 +30,13 @@ public:
 	void Reset();
 	Boolean Next();
 	// QueryNode expressions
-	/*template <typename R>
-	QueryNode<R> Cast();*/
 	template <typename R>
 	QueryNode<R> Select(Func<R(const T&)> expression);
 	QueryNode<T> Where(Func<Boolean(const T&)> expression);
 	QueryNode<T> OrderBy(Func<Boolean(const T&, const T&)> expression);
+	Boolean Contains(const T& value);
+	template <typename F>
+	Boolean Find(const F& value, Func<Boolean(const T&, const F&)> expression);
 	Cardinal Count();
 	T First();
 	T FirstOrDefault();
@@ -123,17 +124,24 @@ QueryNode<T> QueryNode<T>::OrderBy(Func<Boolean(const T&, const T&)> expression)
 }
 
 template <typename T>
-T QueryNode<T>::First()
+Boolean QueryNode<T>::Contains(const T& value)
 {
-	if (!Next())
-		ThrowNullReferenceException(ThisMethod, "item");
-	return *item;
+	Reset();
+	while (Next())
+		if (*item == value)
+			return true;
+	return false;
 }
 
 template <typename T>
-T QueryNode<T>::FirstOrDefault()
+template <typename F>
+Boolean QueryNode<T>::Find(const F& value, Func<Boolean(const T&, const F&)> expression)
 {
-	return Next() ? *item : T();
+	Reset();
+	while (Next())
+		if (expression(*item, value))
+			return true;
+	return false;
 }
 
 template <typename T>
@@ -144,6 +152,22 @@ Cardinal QueryNode<T>::Count()
 	while (Next())
 		r++;
 	return r;
+}
+
+template <typename T>
+T QueryNode<T>::First()
+{
+	Reset();
+	if (!Next())
+		ThrowNullReferenceException(ThisMethod, "item");
+	return *item;
+}
+
+template <typename T>
+T QueryNode<T>::FirstOrDefault()
+{
+	Reset();
+	return Next() ? *item : T();
 }
 
 template <typename T>
