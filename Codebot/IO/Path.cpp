@@ -31,6 +31,8 @@ String Path::Parent(const String& a)
 
 String Path::Combine(const String& a, const String& b)
 {
+	if (a.IsEmpty())
+		return b;
 	return a.EndsWith(Separator) ? a + b : a + Separator + b;
 }
 
