@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E9CA1647-1751-4579-9184-8B81D00DFF50}</ProjectGuid>
-    <RootNamespace>CodebotTesting</RootNamespace>
+    <ProjectGuid>{4736A46D-A355-4BF0-AE35-7AA7A49F9304}</ProjectGuid>
+    <RootNamespace>CodebotUtility</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -62,10 +62,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="UnitTest.cpp" />
+    <ClCompile Include="FileUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UnitTest.h" />
+    <ClInclude Include="FileUtility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E9CA1647-1751-4579-9184-8B81D00DFF50}</ProjectGuid>
-    <RootNamespace>CodebotTesting</RootNamespace>
+    <ProjectGuid>{C7BAA226-4A8E-4371-9DDC-61E3C69A50B7}</ProjectGuid>
+    <RootNamespace>fsearch</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -62,10 +62,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="UnitTest.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UnitTest.h" />
+    <Library Include="..\..\Debug\Codebot.lib" />
+    <Library Include="..\..\Debug\Codebot.Utility.lib" />
+    <Library Include="..\..\Debug\codecore.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Codebot\Codebot.vcxproj">
+      <Project>{b0f4de16-325d-4926-9db8-5228f59a3882}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Codebot\Utility\Codebot.Utility.vcxproj">
+      <Project>{4736a46d-a355-4bf0-ae35-7aa7a49f9304}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

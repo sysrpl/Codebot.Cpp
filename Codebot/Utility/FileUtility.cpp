@@ -83,7 +83,7 @@ void FileSearch(const String& path, const String& wildcards, const String& patte
 	Boolean changed = false;
 	int i = 0;
 	ForEveryLine(path, wildcards,
-	[&] (String file, String& line)
+	[&] (String file, String& line) -> Boolean
 	{
 		if (last != file)
 		{
@@ -97,8 +97,12 @@ void FileSearch(const String& path, const String& wildcards, const String& patte
 			if (changed)
 				WriteLine("\nIn file {0}", file);
 			changed = false;
+			#ifdef WindowsOS
+			WriteLine("line {0}: {1}", i, line);
+			#else
 			WriteLine("line {0}: {1}", i,
 				line.Replace(pattern, "\033[1;32m" + pattern + "\033[0m"));
+			#endif
 		}
 		return false;
 	}, recursive);

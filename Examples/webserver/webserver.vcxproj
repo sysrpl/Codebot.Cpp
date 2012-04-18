@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E9CA1647-1751-4579-9184-8B81D00DFF50}</ProjectGuid>
-    <RootNamespace>CodebotTesting</RootNamespace>
+    <ProjectGuid>{D5F10F9E-40A9-4251-A827-87531408B292}</ProjectGuid>
+    <RootNamespace>webserver</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -46,6 +46,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -62,10 +63,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="UnitTest.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UnitTest.h" />
+    <ProjectReference Include="..\..\Codebot\Codebot.vcxproj">
+      <Project>{b0f4de16-325d-4926-9db8-5228f59a3882}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Codebot\Net\Codebot.Net.vcxproj">
+      <Project>{f3459830-6631-4672-8a5f-50595f149a93}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\Debug\Codebot.lib" />
+    <Library Include="..\..\Debug\Codebot.Net.lib" />
+    <Library Include="..\..\Debug\codecore.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

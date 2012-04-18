@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Temp\Git\Codebot;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -72,17 +72,17 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Debug\Codebot.lib" />
-    <Library Include="..\Debug\Codebot.Net.lib" />
-    <Library Include="..\Debug\codecore.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Codebot\Codebot.vcxproj">
       <Project>{b0f4de16-325d-4926-9db8-5228f59a3882}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Codebot\Testing\Codebot.Testing.vcxproj">
       <Project>{e9ca1647-1751-4579-9184-8b81d00dff50}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\Debug\Codebot.lib" />
+    <Library Include="..\Debug\Codebot.Testing.lib" />
+    <Library Include="..\Debug\codecore.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

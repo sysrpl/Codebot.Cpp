@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Temp\Git\Codebot;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -75,6 +75,11 @@
     <ClInclude Include="Url.h" />
     <ClInclude Include="WebRequest.h" />
     <ClInclude Include="WebResponse.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Codebot.vcxproj">
+      <Project>{b0f4de16-325d-4926-9db8-5228f59a3882}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

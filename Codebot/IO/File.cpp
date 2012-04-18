@@ -27,8 +27,8 @@ String File::FileName(const String& sourceFile)
 String File::Name(const String& sourceFile)
 {
 	auto s = FileName(sourceFile);
-	auto i = sourceFile.LastIndexOf(".");
-	return i < 0 ? s : sourceFile.SubString(0, i);
+	auto i = s.LastIndexOf(".");
+	return i < 0 ? s : s.SubString(0, i);
 }
 
 String File::Extension(const String& sourceFile)

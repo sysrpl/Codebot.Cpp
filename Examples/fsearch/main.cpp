@@ -20,7 +20,6 @@ void Search()
 	String dir;
 	if (!Application::FindSwitch("dir:", dir))
 		dir = Directory::Current();
-
 	if (!Directory::Exists(dir))
 	{
 		WriteLine("Directory '{0}' not found", dir);
