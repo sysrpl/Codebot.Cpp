@@ -42,7 +42,7 @@ void Search()
 	}
 	String recurse;
 	Application::FindSwitch("recurse:", recurse);
-	FileSearch(dir, file, pattern, true);
+	FileSearch(dir, file, pattern, recurse != "n");
 }
 
 int main()
