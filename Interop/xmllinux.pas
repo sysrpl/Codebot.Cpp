@@ -2,59 +2,59 @@ uses
 	Xml2;
 
 type
-  TInterfacedImpl = class(TObject, IInterface)
-  protected
-    FRefCount: Integer;
-    function QueryInterface(const IID: TGUID; out Obj): HResult; stdcall;
-    function _AddRef: Integer; stdcall;
-    function _Release: Integer; stdcall;
-  public
-    procedure AfterConstruction; override;
-    procedure BeforeDestruction; override;
-    class function NewInstance: TObject; override;
-    property RefCount: Integer read FRefCount;
-  end;
+	TInterfacedImpl = class(TObject, IInterface)
+	protected
+		FRefCount: Integer;
+		function QueryInterface(const IID: TGUID; out Obj): HResult; stdcall;
+		function _AddRef: Integer; stdcall;
+		function _Release: Integer; stdcall;
+	public
+		procedure AfterConstruction; override;
+		procedure BeforeDestruction; override;
+		class function NewInstance: TObject; override;
+		property RefCount: Integer read FRefCount;
+	end;
 
 procedure TInterfacedImpl.AfterConstruction;
 begin
-  InterlockedDecrement(XmlRefCount);
-  InterlockedDecrement(FRefCount);
+	InterlockedDecrement(XmlRefCount);
+	InterlockedDecrement(FRefCount);
 end;
 
 procedure TInterfacedImpl.BeforeDestruction;
 begin
-  if RefCount <> 0 then
-    Error(reInvalidPtr);
+	if RefCount <> 0 then
+		Error(reInvalidPtr);
 end;
 
 class function TInterfacedImpl.NewInstance: TObject;
 begin
-  Result := inherited NewInstance;
-  InterlockedIncrement(XmlCreated);
-  InterlockedIncrement(XmlRefCount);
-  TInterfacedImpl(Result).FRefCount := 1;
+	Result := inherited NewInstance;
+	InterlockedIncrement(XmlCreated);
+	InterlockedIncrement(XmlRefCount);
+	TInterfacedImpl(Result).FRefCount := 1;
 end;
 
 function TInterfacedImpl.QueryInterface(const IID: TGUID; out Obj): HResult;
 begin
-  if GetInterface(IID, Obj) then
-    Result := 0
-  else
-    Result := E_NOINTERFACE;
+	if GetInterface(IID, Obj) then
+		Result := 0
+	else
+		Result := E_NOINTERFACE;
 end;
 
 function TInterfacedImpl._AddRef: Integer;
 begin
-  InterlockedIncrement(XmlRefCount);
-  Result := InterlockedIncrement(FRefCount);
+	InterlockedIncrement(XmlRefCount);
+	Result := InterlockedIncrement(FRefCount);
 end;
 
 function TInterfacedImpl._Release: Integer;
 begin
-  InterlockedDecrement(XmlRefCount);
-  Result := InterlockedDecrement(FRefCount);
-  if Result = 0 then
-    Destroy;
+	InterlockedDecrement(XmlRefCount);
+	Result := InterlockedDecrement(FRefCount);
+	if Result = 0 then
+		Destroy;
 end;
 
 type
@@ -432,125 +432,125 @@ end;
 {$endregion}
 
 type
-  TDocument = class;
-  TNodeList = class;
+	TDocument = class;
+	TNodeList = class;
 
 { TNode }
 
-  TNode = class(TInterfacedImpl, INode)
-  private
-    FNode: xmlNodePtr;
+	TNode = class(TInterfacedImpl, INode)
+	private
+		FNode: xmlNodePtr;
 		function Execute(XPath: PAnsiChar): TXPathResult;
-  protected
-    function Instance: Pointer; stdcall;
-    function GetDocument(out Document: IDocument): Boolean; stdcall;
-    function GetParent(out Node: INode): Boolean; stdcall;
-    function SelectNode(XPath: PAnsiChar; out Node: INode): Boolean; stdcall;
-    function SelectList(XPath: PAnsiChar; out List: INodeList): Boolean; stdcall;
-    procedure Attributes(out List: INodeList); stdcall;
-    procedure Nodes(out List: INodeList); stdcall;
-    function GetKind: Integer; stdcall;
-    function GetName: PAnsiChar; stdcall;
-    function GetText: PAnsiChar; stdcall;
-    procedure SetText(Value: PAnsiChar); stdcall;
-    function GetXml: PAnsiChar; stdcall;
-    procedure SetXml(Value: PAnsiChar); stdcall;
-  public
-    constructor Create(Node: xmlNodePtr);
-  end;
+	protected
+		function Instance: Pointer; stdcall;
+		function GetDocument(out Document: IDocument): Boolean; stdcall;
+		function GetParent(out Node: INode): Boolean; stdcall;
+		function SelectNode(XPath: PAnsiChar; out Node: INode): Boolean; stdcall;
+		function SelectList(XPath: PAnsiChar; out List: INodeList): Boolean; stdcall;
+		procedure Attributes(out List: INodeList); stdcall;
+		procedure Nodes(out List: INodeList); stdcall;
+		function GetKind: Integer; stdcall;
+		function GetName: PAnsiChar; stdcall;
+		function GetText: PAnsiChar; stdcall;
+		procedure SetText(Value: PAnsiChar); stdcall;
+		function GetXml: PAnsiChar; stdcall;
+		procedure SetXml(Value: PAnsiChar); stdcall;
+	public
+		constructor Create(Node: xmlNodePtr);
+	end;
 
 { TNodeList }
 
-  TNodeList = class(TInterfacedImpl, INodeList)
-  private
-    FNode: xmlNodePtr;
-    FNodeType: xmlElementType;
-  protected
-    procedure Clear; stdcall;
-    procedure Add(Node: INode); overload; stdcall;
-    procedure Add(Name: PAnsiChar; out Node: INode); overload; stdcall;
-    procedure Remove(Node: INode); overload; stdcall;
-    procedure Remove(Name: PAnsiChar); overload; stdcall;
-    procedure Item(Index: Integer; out Node: INode); overload; stdcall;
-    function Item(Name: PAnsiChar; out Node: INode): Boolean; overload; stdcall;
-    function Length: Integer; stdcall;
-  public
-    constructor Create(Node: xmlNodePtr; NodeType: xmlElementType);
-  end;
+	TNodeList = class(TInterfacedImpl, INodeList)
+	private
+		FNode: xmlNodePtr;
+		FNodeType: xmlElementType;
+	protected
+		procedure Clear; stdcall;
+		procedure Add(Node: INode); overload; stdcall;
+		procedure Add(Name: PAnsiChar; out Node: INode); overload; stdcall;
+		procedure Remove(Node: INode); overload; stdcall;
+		procedure Remove(Name: PAnsiChar); overload; stdcall;
+		procedure Item(Index: Integer; out Node: INode); overload; stdcall;
+		function Item(Name: PAnsiChar; out Node: INode): Boolean; overload; stdcall;
+		function Length: Integer; stdcall;
+	public
+		constructor Create(Node: xmlNodePtr; NodeType: xmlElementType);
+	end;
 
 { TXPathList }
 
-  TXPathList = class(TInterfacedImpl, INodeList)
-  private
-    FXPathResult: TXPathResult;
-  protected
-    procedure Clear; stdcall;
-    procedure Add(Node: INode); overload; stdcall;
-    procedure Add(Name: PAnsiChar; out Node: INode); overload; stdcall;
-    procedure Remove(Node: INode); overload; stdcall;
-    procedure Remove(Name: PAnsiChar); overload; stdcall;
-    procedure Item(Index: Integer; out Node: INode); overload; stdcall;
-    function Item(Name: PAnsiChar; out Node: INode): Boolean; overload; stdcall;
-    function Length: Integer; stdcall;
-  public
-    constructor Create(const XPathResult: TXPathResult);
-  end;
+	TXPathList = class(TInterfacedImpl, INodeList)
+	private
+		FXPathResult: TXPathResult;
+	protected
+		procedure Clear; stdcall;
+		procedure Add(Node: INode); overload; stdcall;
+		procedure Add(Name: PAnsiChar; out Node: INode); overload; stdcall;
+		procedure Remove(Node: INode); overload; stdcall;
+		procedure Remove(Name: PAnsiChar); overload; stdcall;
+		procedure Item(Index: Integer; out Node: INode); overload; stdcall;
+		function Item(Name: PAnsiChar; out Node: INode): Boolean; overload; stdcall;
+		function Length: Integer; stdcall;
+	public
+		constructor Create(const XPathResult: TXPathResult);
+	end;
 
 { TDocument }
 
-  TDocument = class(TNode, IDocument)
-  private
-    function GetDocument: xmlDocPtr;
+	TDocument = class(TNode, IDocument)
+	private
+		function GetDocument: xmlDocPtr;
 		procedure SetDocument(Value: xmlDocPtr);
-    property Document: xmlDocPtr read GetDocument write SetDocument;
-  protected
-    procedure Beautify; stdcall;
-    procedure CreateAttribute(const Name: PAnsiChar; out Node: INode); stdcall;
-    procedure CreateElement(const Name: PAnsiChar; out Node: INode); stdcall;
-    procedure SetRoot(Node: INode); stdcall;
-    function GetRoot(out Node: INode): Boolean; stdcall;
-    procedure Load(FileName: PAnsiChar); stdcall;
-    procedure Save(FileName: PAnsiChar); stdcall;
-  public
-    constructor Create(Doc: xmlDocPtr);
-    destructor Destroy; override;
-  end;
+		property Document: xmlDocPtr read GetDocument write SetDocument;
+	protected
+		procedure Beautify; stdcall;
+		procedure CreateAttribute(const Name: PAnsiChar; out Node: INode); stdcall;
+		procedure CreateElement(const Name: PAnsiChar; out Node: INode); stdcall;
+		procedure SetRoot(Node: INode); stdcall;
+		function GetRoot(out Node: INode): Boolean; stdcall;
+		procedure Load(FileName: PAnsiChar); stdcall;
+		procedure Save(FileName: PAnsiChar); stdcall;
+	public
+		constructor Create(Doc: xmlDocPtr);
+		destructor Destroy; override;
+	end;
 
 { TNode }
 
 constructor TNode.Create(Node: xmlNodePtr);
 begin
-  inherited Create;
-  FNode := Node;
+	inherited Create;
+	FNode := Node;
 end;
 
 function TNode.Instance: Pointer;
 begin
-  Result := Self;
+	Result := Self;
 end;
 
 function TNode.GetDocument(out Document: IDocument): Boolean;
 var
-  D: xmlDocPtr;
+	D: xmlDocPtr;
 begin
 	D := FNode.doc;
-  Result := D <> nil;
-  if Result then
-    Document := TDocument.Create(D)
-  else
-    Document := nil;
+	Result := D <> nil;
+	if Result then
+		Document := TDocument.Create(D)
+	else
+		Document := nil;
 end;
 
 function TNode.GetParent(out Node: INode): Boolean;
 var
-  N: xmlNodePtr;
+	N: xmlNodePtr;
 begin
-  N := FNode.parent;
-  Result := N <> nil;
-  if Result then
-    Node := TNode.Create(N)
-  else
-    Node := nil;
+	N := FNode.parent;
+	Result := N <> nil;
+	if Result then
+		Node := TNode.Create(N)
+	else
+		Node := nil;
 end;
 
 function TNode.Execute(XPath: PAnsiChar): TXPathResult;
@@ -592,31 +592,31 @@ end;
 
 procedure TNode.Attributes(out List: INodeList);
 begin
-  List := TNodeList.Create(FNode, XML_ATTRIBUTE_NODE);
+	List := TNodeList.Create(FNode, XML_ATTRIBUTE_NODE);
 end;
 
 procedure TNode.Nodes(out List: INodeList);
 begin
-  List := TNodeList.Create(FNode, XML_ELEMENT_NODE);
+	List := TNodeList.Create(FNode, XML_ELEMENT_NODE);
 end;
 
 function TNode.GetKind: Integer;
 begin
-  Result := Integer(FNode._type);
+	Result := Integer(FNode._type);
 end;
 
 function TNode.GetName: PAnsiChar;
 begin
-  case FNode._type of
-    XML_ELEMENT_NODE:
-      Return(Result, FNode.name);
-    XML_ATTRIBUTE_NODE:
-      Return(Result, FNode.name);
-    XML_DOCUMENT_NODE:
-      Return(Result, 'DOCUMENT');
-  else
-    Return(Result, FNode.name);
-  end;
+	case FNode._type of
+		XML_ELEMENT_NODE:
+			Return(Result, FNode.name);
+		XML_ATTRIBUTE_NODE:
+			Return(Result, FNode.name);
+		XML_DOCUMENT_NODE:
+			Return(Result, 'DOCUMENT');
+	else
+		Return(Result, FNode.name);
+	end;
 end;
 
 function TNode.GetText: PAnsiChar;
@@ -634,19 +634,19 @@ procedure TNode.SetText(Value: PAnsiChar);
 var
 	B: PAnsiChar;
 begin
-  case FNode._type of
-    XML_ELEMENT_NODE,
-    XML_ATTRIBUTE_NODE:
-      begin
+	case FNode._type of
+		XML_ELEMENT_NODE,
+		XML_ATTRIBUTE_NODE:
+			begin
 				B := xmlEncodeSpecialChars(FNode.doc, Value);
 				xmlNodeSetContent(FNode, B);
 				xmlFree(B);
-      end;
-    XML_DOCUMENT_NODE:
-      begin
-				//  Do nothing
-      end;
-  end;
+			end;
+		XML_DOCUMENT_NODE:
+			begin
+				//	Do nothing
+			end;
+	end;
 end;
 
 function TNode.GetXml: PAnsiChar;
@@ -664,28 +664,28 @@ end;
 
 procedure TNode.SetXml(Value: PAnsiChar);
 begin
-  case FNode._type of
-    XML_ELEMENT_NODE,
-    XML_ATTRIBUTE_NODE:
-      begin
+	case FNode._type of
+		XML_ELEMENT_NODE,
+		XML_ATTRIBUTE_NODE:
+			begin
 				// Do nothing
-      end;			
-    XML_DOCUMENT_NODE:
+			end;			
+		XML_DOCUMENT_NODE:
 			begin
 				FNode := xmlNodePtr(xmlParseDoc(Value));
 				if FNode = nil then
 					FNode := xmlNodePtr(xmlNewDoc('1.0'));
 			end;
-  end;
+	end;
 end;
 
 { TNodeList }
 
 constructor TNodeList.Create(Node: xmlNodePtr; NodeType: xmlElementType);
 begin
-  inherited Create;
-  FNode := Node;
-  FNodeType := NodeType;
+	inherited Create;
+	FNode := Node;
+	FNodeType := NodeType;
 end;
 
 procedure TNodeList.Clear;
@@ -805,14 +805,14 @@ begin
 		XML_ELEMENT_NODE:
 			begin
 				N := xmlGetElementByName(FNode, Name);
-				Result :=  N <> nil;
+				Result :=	N <> nil;
 				if Result then
 					Node := TNode.Create(N);
 			end;
 		XML_ATTRIBUTE_NODE:
 			begin
 				A := xmlGetAttributeByName(FNode, Name);
-				Result :=  A <> nil;
+				Result :=	A <> nil;
 				if Result then
 					Node := TNode.Create(xmlNodePtr(A));
 			end;
@@ -834,8 +834,8 @@ end;
 
 constructor TXPathList.Create(const XPathResult: TXPathResult);
 begin
-  inherited Create;
-  FXPathResult := XPathResult;
+	inherited Create;
+	FXPathResult := XPathResult;
 end;
 
 procedure TXPathList.Clear;
@@ -896,8 +896,8 @@ end;
 
 constructor TDocument.Create(Doc: xmlDocPtr);
 begin
-  inherited Create(xmlNodePtr(Doc));
-  if FNode = nil then
+	inherited Create(xmlNodePtr(Doc));
+	if FNode = nil then
 		FNode := xmlNodePtr(xmlNewDoc('1.0'));
 end;
 

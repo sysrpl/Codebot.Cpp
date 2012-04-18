@@ -7,11 +7,11 @@ unit FileTools;
 interface
 
 uses
-  SysUtils, ShareTools;
+	SysUtils, ShareTools;
 
 type
-  IFileFind = interface
-    ['{88CE80B4-CE80-4BCD-B99C-90633A0538B9}']
+	IFileFind = interface
+		['{88CE80B4-CE80-4BCD-B99C-90633A0538B9}']
 		procedure Search(Path, Wildcard: PAnsiChar; Attributes: Cardinal); stdcall;
 		function Next: Boolean; stdcall;
 		procedure Close; stdcall;
@@ -19,7 +19,7 @@ type
 		function Size: LongWord; stdcall;
 		function Attributes: LongWord; stdcall;
 		function Date: TDateTime; stdcall;		
-  end;
+	end;
 
 procedure FileFindCreate(out Find: IFileFind); cdecl;
 

@@ -14,34 +14,34 @@ implementation
 
 function Floor(const A: Double): Double;
 var
-  B: Integer;
+	B: Integer;
 begin
 	B := Trunc(A);
 	if A = B then
-  begin
+	begin
 		Result := B;
-    Exit;
-  end;
+		Exit;
+	end;
 	if B < A then
-    Result := B
-  else
-    Result := -(1 - B);
+		Result := B
+	else
+		Result := -(1 - B);
 end;
 
 function Ceil(const A: Double): Double;
 var
-  B: Integer;
+	B: Integer;
 begin
 	B := Trunc(A);
 	if A = B then
-  begin
+	begin
 		Result := B;
-    Exit;
-  end;
+		Exit;
+	end;
 	if B < A then
-    Result := B + 1
-  else
-	  Result := -(1 - b) + 1;
+		Result := B + 1
+	else
+		Result := -(1 - b) + 1;
 end;
 
 function Fract(const A: Double): Double;
