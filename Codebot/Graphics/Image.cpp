@@ -1,6 +1,7 @@
 #include <Codebot/Graphics/Image.h>
 #include <Codebot/Graphics/GraphicsExceptions.h>
 #include <Codebot/Interop/IStream.h>
+#include <Codebot/Text/Format.h>
 
 namespace Codebot
 {
@@ -48,6 +49,18 @@ void Image::Resize(Cardinal width, Cardinal height)
 		ThrowImageException(ThisMethod);
 }
 
+// Image override methods
+
+String Image::ToFormat(const String& format) const
+{
+	if (Loaded())
+		return Text::Format("image {1}x{2}, format: {0}", this->format,
+			image->Width(), image->Height());
+	else
+		return "empty image";
+}
+
+
 // Image properties
 
 String Image::Format()
@@ -92,6 +105,7 @@ Pixel* Image::Pixels() const
 
 void Image::Load(const String& fileName)
 {
+	format = image->GetFileFormat(fileName);
 	if (!image->LoadFile(fileName))
 		ThrowImageException(ThisMethod);
 }
@@ -99,6 +113,7 @@ void Image::Load(const String& fileName)
 void Image::Load(Stream* stream)
 {
 	Interface<IStream> s = new StreamAdapter(stream);
+	format = image->GetStreamFormat(s);
 	if (!image->LoadStream(s))
 		ThrowImageException(ThisMethod);
 }

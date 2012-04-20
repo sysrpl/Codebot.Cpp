@@ -33,6 +33,8 @@ public:
 	void Flip();
 	void Mirror();
 	void Resize(Cardinal width, Cardinal height);
+	// Override methods
+	String ToFormat(const String& format) const;
 	// Properties
 	String Format();
 	void Format(const String& value);
