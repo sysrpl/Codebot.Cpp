@@ -42,7 +42,12 @@ Guid::Guid(const PChar s)
 	}
 }
 
-Guid::operator GuidBytes () const
+Guid::operator const GuidBytes& () const
+{
+	return guidBytes;
+}
+
+const GuidBytes& Guid::operator ()() const
 {
 	return guidBytes;
 }

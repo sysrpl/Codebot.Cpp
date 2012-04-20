@@ -6,6 +6,12 @@ namespace Codebot
 namespace Interop
 {
 
+extern const Result ROk;
+extern const Result RFalse;
+extern const Result RNoInterface;
+extern const Result RUnexpected;
+extern const Result RNotImplemented;
+
 struct IInterface
 {
 	static const Guid Id;

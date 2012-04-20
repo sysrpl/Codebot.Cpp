@@ -18,8 +18,8 @@ private:
 public:
 	VectorEnumerator(const std::vector<T>& v);
 	// IManagedType<T>
-	void _Lock();
-	void _Unlock();
+	Integer _Lock();
+	Integer _Unlock();
 	// IEnumerator<T>
 	T Type();
 	void Reset();
@@ -37,16 +37,18 @@ VectorEnumerator<T>::VectorEnumerator(const std::vector<T>& v)
 // VectorEnumerator<T>::IManagedType
 
 template <typename T>
-void VectorEnumerator<T>::_Lock()
+Integer VectorEnumerator<T>::_Lock()
 {
-	Interop::AtomicIncrement(count);
+	return Interop::AtomicIncrement(count);
 }
 
 template <typename T>
-void VectorEnumerator<T>::_Unlock()
+Integer VectorEnumerator<T>::_Unlock()
 {
-	if (Interop::AtomicDecrement(count) == 0)
+	Integer c = Interop::AtomicDecrement(count);
+	if (c == 0)
 		delete this;
+	return c;
 }
 
 // VectorEnumerator<T>::IEnumerator<T>

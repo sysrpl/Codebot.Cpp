@@ -13,7 +13,7 @@ void MemZero(Pointer p, Cardinal size);
 template <typename T>
 inline Boolean MemCompare(const T& a, const T& b)
 {
-	return MemCompare(&Var(a), &Var(b), sizeof(T));
+	return MemCompare((const Pointer)&a, (const Pointer)&b, sizeof(T));
 }
 
 }

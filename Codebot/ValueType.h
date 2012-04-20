@@ -7,6 +7,7 @@ namespace Codebot
 class ValueType
 {
 public:
+	virtual ~ValueType() { }
 	Boolean operator == (const ValueType& instance) const;
 	virtual Boolean Equals(ValueType* instance) const;
 	virtual String ToFormat(const String& format) const;

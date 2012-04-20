@@ -20,7 +20,8 @@ public:
 	Guid();
 	Guid(const PChar s);
 	Boolean operator == (const Guid& guid) const;
-	operator GuidBytes () const;
+	operator const GuidBytes& () const;
+	const GuidBytes& operator ()() const;
 	// Override methods
 	Boolean Equals(ValueType* instance) const;
 	// ISerializable

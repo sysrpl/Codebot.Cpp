@@ -1,4 +1,5 @@
 #pragma once
+#include <Codebot/Interop/IInterface.h>
 #include <Codebot/ValueType.h>
 #include <Codebot/String.h>
 #include <Codebot/Console.h>
@@ -8,13 +9,7 @@ namespace Codebot
 namespace Interop
 {
 
-extern const Result ROk;
-extern const Result RFalse;
-extern const Result RNoInterface;
-extern const Result RUnexpected;
-extern const Result RNotImplplemented;
-
-// Interface
+// Interface class
 
 template <typename T>
 class Interface : public ValueType
@@ -39,6 +34,33 @@ public:
 };
 
 // Interface querying
+
+template <typename I, typename T>
+Interface<I> QueryAs()
+{
+	T* t = new T();
+	I* i = As<I>(t);
+	if (i == null)
+	{
+		delete t;
+		return Interface<I>(null);
+	}
+	i->AddRef();
+	return Interface<I>(i);
+}
+
+template <typename I, typename T>
+Interface<I> QueryAs(T* t)
+{
+	if (t == null)
+		return Interface<I>(null);
+	I* i = As<I>(t);
+	if (i == null)
+		return Interface<I>(null);
+	i->AddRef();
+	return Interface<I>(i);
+}
+
 
 template <typename T, typename I>
 Interface<T> QueryAs(const Interface<I>& value)

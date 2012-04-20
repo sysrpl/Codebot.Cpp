@@ -34,17 +34,24 @@ void Object::AssignTo(Object* dest)
 	ThrowAssignException(ThisMethod, TypeToStr(*this), TypeToStr(*dest));
 }
 
-void Object::_Lock()
+Integer Object::RefCount()
 {
-	Codebot::Interop::AtomicIncrement(objectCount);	
-	Codebot::Interop::AtomicIncrement(count);
+	return count;
 }
 
-void Object::_Unlock()
+Integer Object::_Lock()
 {
-	Codebot::Interop::AtomicDecrement(objectCount);	
-	if (Codebot::Interop::AtomicDecrement(count) == 0)
+	Interop::AtomicIncrement(objectCount);
+	return Interop::AtomicIncrement(count);
+}
+
+Integer Object::_Unlock()
+{
+	Interop::AtomicDecrement(objectCount);
+	Integer c = Interop::AtomicDecrement(count);
+	if (c == 0)
 		delete this;
+	return c;
 }
 
 }

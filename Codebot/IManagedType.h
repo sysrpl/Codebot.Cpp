@@ -8,8 +8,8 @@ class IManagedType
 {
 public:
 	virtual ~IManagedType() { }
-	virtual void _Lock() = 0;
-	virtual void _Unlock() = 0;
+	virtual Integer _Lock() = 0;
+	virtual Integer _Unlock() = 0;
 };
 
 template <typename T>

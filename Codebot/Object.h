@@ -15,12 +15,13 @@ private:
 	Object(const Object& object); 
 	Object& operator = (const Object& object); 
 protected:
+	Integer RefCount();
 	virtual void AssignTo(Object* dest);
 public:
 	Object();
 	virtual void Assign(Object* source);
-	void _Lock();
-	void _Unlock();
+	Integer _Lock();
+	Integer _Unlock();
 };
 
 }
