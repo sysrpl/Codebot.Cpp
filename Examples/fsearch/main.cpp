@@ -22,7 +22,7 @@ void Search()
 		dir = Directory::Current();
 	if (!Directory::Exists(dir))
 	{
-		WriteLine("Directory '{0}' not found", dir);
+		WriteLine("Directory '{0}' was not found", dir);
 		return;
 	}
 	String file;
