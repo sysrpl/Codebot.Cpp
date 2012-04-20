@@ -13,10 +13,11 @@ using namespace Codebot::Graphics::Interop;
 
 namespace ImageFormats
 {
-	const String jpg = "jpg";
 	const String bmp = "bmp";
 	const String gif = "gif";
+	const String jpg = "jpg";
 	const String png = "png";
+	const String tga = "tga";
 }
 
 Image::Image() :
@@ -71,11 +72,13 @@ String Image::Format()
 void Image::Format(const String& value)
 {
 	String s = value.ToLower().Trim();
-	if (s == ImageFormats::jpg)
+	if (s == ImageFormats::bmp)
 		format = s;
 	else if (s == ImageFormats::gif)
 		format = s;
-	else if (s == ImageFormats::bmp)
+	else if (s == ImageFormats::jpg)
+		format = s;
+	else if (s == ImageFormats::tga)
 		format = s;
 	else
 		format = ImageFormats::png;

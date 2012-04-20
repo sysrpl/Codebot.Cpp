@@ -12,10 +12,11 @@ namespace Graphics
 
 namespace ImageFormats
 {
-	extern const String jpg;
 	extern const String bmp;
 	extern const String gif;
+	extern const String jpg;
 	extern const String png;
+	extern const String tga;
 }
 
 typedef Codebot::Graphics::Interop::IImage IImage;
