@@ -11,9 +11,9 @@ EventArgs::operator EventArgs* ()
 }
 
 
-NotifyEvent::Method Event(Object* data, const NotifyEvent::Handler& code)
+NotifyEvent::Method Event(const NotifyEvent::Handler& code)
 {
-	return NotifyEvent::Method(data, code);
+	return NotifyEvent::Method(code);
 }
 
 }

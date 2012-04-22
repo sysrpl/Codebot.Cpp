@@ -132,14 +132,16 @@ bool Flags<T>::Equals(T a) const
 template <typename T>
 Flags<T>& Flags<T>::Include(T a)
 {
-	(IntFlag)flags |= (IntFlag)a;
+	IntFlag& f = *(IntFlag*)&flags;
+	f |= (IntFlag)a;
 	return *this;
 }
 
 template <typename T>
 Flags<T>& Flags<T>::Exclude(T a)
 {
-	(IntFlag)flags &= ~(IntFlag)a;
+	IntFlag& f = (IntFlag)flags;
+	f &= ~(IntFlag)a;
 	return *this;
 }
 

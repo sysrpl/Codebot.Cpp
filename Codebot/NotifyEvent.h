@@ -16,6 +16,6 @@ class NotifyEvent : public EventHandler<Object, EventArgs>
 {
 };
 
-NotifyEvent::Method Event(Object* data, const NotifyEvent::Handler& code);
+NotifyEvent::Method Event(const NotifyEvent::Handler& code);
 
 }

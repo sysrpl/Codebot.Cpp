@@ -26,6 +26,7 @@ typedef bool Boolean;
 typedef long LongBool;
 typedef float Single;
 typedef double Double;
+typedef float Float;
 typedef unsigned long Handle;
 typedef unsigned long Result;
 
@@ -187,6 +188,26 @@ T Abs(const T& a)
 }
 
 template <typename T>
+T Clamp(const T& a, const T& b, const T& c)
+{
+	return a < b ? b : a > c ? c : a;
+}
+
+template <typename T>
+T Clamp(const T& a)
+{
+	return a < 0 ? 0 : a > 1 ? 1 : a;
+}
+
+template <typename T>
+inline void Swap(T& a, T& b)
+{
+	T c = a;
+	a = b;
+	b = c;
+}
+
+template <typename T>
 inline Boolean IsOdd(const T& a)
 {
 	return (a & 0x1) == 0x1;
@@ -210,13 +231,6 @@ public:
 	virtual Type& operator [] (const Indexer& index) = 0;
 	virtual const Type& operator [] (const Indexer& index) const = 0;
 	virtual Cardinal Length() const = 0;
-};
-
-template <typename T>
-class IRedirect
-{
-public:
-	virtual ~IRedirect() { }
 };
 
 struct ISerializable

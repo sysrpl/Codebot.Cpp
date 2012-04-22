@@ -37,6 +37,8 @@ Buffer AnyToBuffer(const T& value)
 
 // String encoding routines
 
+// TODO: Change Byte* to const Byte* in the encoding routines below
+
 namespace Hex
 {
 	String Encode(Byte* buffer, Cardinal size);

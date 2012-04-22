@@ -8,15 +8,14 @@ template <typename Sender, typename Args>
 class EventHandler : public ValueType
 {
 public:
-	typedef void (*Handler)(Object*, Sender*, Args*);
+	typedef void (*Handler)(Sender*, Args*);
 
 	class Method : public ValueType
 	{
 	public:
-		Object* Data;
 		Handler Code;
 		Method() { }
-		Method(Object* d, const Handler& c); 
+		Method(const Handler& c);
 		Boolean operator == (const Method& m);
 	};
 private:
@@ -30,15 +29,15 @@ public:
 /* EventHandler<Sender, Args>::Method */
 
 template <typename Sender, typename Args>
-EventHandler<Sender, Args>::Method::Method(Object* d, const Handler& c) 
-	: Data(d), Code(c) 
+EventHandler<Sender, Args>::Method::Method(const Handler& c)
+	: Code(c)
 { 
 }
 
 template <typename Sender, typename Args>
 Boolean EventHandler<Sender, Args>::Method::operator == (const Method& m) 
 { 
-	return m.Data == Data && m.Code == Code; 
+	return m.Code == Code;
 }
 
 /* EventHandler<Sender, Args> */
@@ -50,7 +49,7 @@ void EventHandler<Sender, Args>::operator () (Sender* sender, Args* args)
 	for (Integer i = 0; i < length; i++)
 	{
 		Method m = methods[i];
-		m.Code(m.Data, sender, args);
+		m.Code(sender, args);
 	}
 }
 

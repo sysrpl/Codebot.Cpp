@@ -298,6 +298,15 @@ String String::SubString(Integer start, Integer length) const
 	return data->substr(start, length);
 }
 
+String String::Reverse() const
+{
+	if (IsEmpty())
+		return *this;
+	String r = (const PChar)*this;
+	std::reverse(r.data->begin(), r.data->end());
+	return r;
+}
+
 String String::ToUpper() const
 {
 	String r = (const PChar)*this;

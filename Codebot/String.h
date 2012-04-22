@@ -54,6 +54,7 @@ public:
 	Array<String> SplitOne(const String& delimiter) const;
 	String SubString(Integer start) const;
 	String SubString(Integer start, Integer length) const;
+	String Reverse() const;
 	String ToUpper() const;
 	String ToLower() const;
 	String Pad(const Char& c, Integer count) const;
