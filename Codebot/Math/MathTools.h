@@ -7,7 +7,6 @@ namespace Math
 {
 
 // TODO: Add all math functions
-// TODO: Move Math to a Codebot.Math package
 
 extern const Double PI;
 

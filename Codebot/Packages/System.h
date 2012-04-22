@@ -7,10 +7,12 @@
 #include <Codebot/NotifyEvent.h>
 #include <Codebot/Nullable.h>
 
+// Basic units from other packages
+#include <Codebot/Math/MathTools.h>
+
 // Default packages
 #include <Codebot/Packages/Collections.h>
 #include <Codebot/Packages/IO.h>
-#include <Codebot/Packages/Math.h>
 #include <Codebot/Packages/Memory.h>
 #include <Codebot/Packages/Text.h>
 #include <Codebot/Packages/Time.h>
