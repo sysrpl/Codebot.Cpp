@@ -28,6 +28,10 @@ Image::Image() :
 
 void Image::Generate(Cardinal width, Cardinal height)
 {
+	if (width < 1)
+		ThrowArgumentException(ThisMethod, "width");
+	if (height < 1)
+		ThrowArgumentException(ThisMethod, "height");
 	if (!image->Generate(width, height))
 		ThrowImageException(ThisMethod);
 }
@@ -50,6 +54,53 @@ void Image::Resize(Cardinal width, Cardinal height)
 		ThrowImageException(ThisMethod);
 }
 
+Boolean NeedsPremultiply(Pixel* pixel, Cardinal width, Cardinal height)
+{
+	auto size = width * height;
+	for (Cardinal i = 0; i < size; i++)
+	{
+		auto a = pixel[i].A;
+		if (a == 0xFF)
+			continue;
+		if (pixel[i].R > a)
+			return true;
+		if (pixel[i].G > a)
+			return true;
+		if (pixel[i].B > a)
+			return true;
+	}
+	return false;
+}
+
+void Image::Premultiply()
+{
+	if (!Loaded())
+		return;
+	Pixel* pixel = Pixels();
+	auto width = Width();
+	auto height = Height();
+	if (!NeedsPremultiply(pixel, width, height))
+		return;
+	auto size = width * height;
+	for (Cardinal i = 0; i < size; i++)
+	{
+		auto a = pixel[i].A;
+		if (a == 0xFF)
+			continue;
+		if (a == 0)
+		{
+			pixel[i].R = 0;
+			pixel[i].G = 0;
+			pixel[i].B = 0;
+			continue;
+		}
+		Single ratio = (Single)pixel[i].A / 255.0f;
+		pixel[i].R = (Byte)(pixel[i].R * ratio);
+		pixel[i].G = (Byte)(pixel[i].G * ratio);
+		pixel[i].B = (Byte)(pixel[i].B * ratio);
+	}
+}
+
 // Image override methods
 
 String Image::ToFormat(const String& format) const
@@ -60,7 +111,6 @@ String Image::ToFormat(const String& format) const
 	else
 		return "empty image";
 }
-
 
 // Image properties
 
@@ -101,6 +151,9 @@ Cardinal Image::Height() const
 
 Pixel* Image::Pixels() const
 {
+	Pixel* pixels = (Pixel*)image->Bits();
+	if (pixels == null)
+		ThrowNullReferenceException(ThisMethod, "pixels");
 	return (Pixel*)image->Bits();
 }
 

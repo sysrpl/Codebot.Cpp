@@ -1,5 +1,5 @@
 #pragma once
-#include <Codebot/Graphics/GraphicTypes.h>
+#include <Codebot/Graphics/GraphicsTypes.h>
 #include <Codebot/Graphics/Interop/GraphicsInterop.h>
 #include <Codebot/Interop/Interface.h>
 #include <Codebot/Stream.h>
@@ -34,6 +34,7 @@ public:
 	void Flip();
 	void Mirror();
 	void Resize(Cardinal width, Cardinal height);
+	void Premultiply();
 	// Override methods
 	String ToFormat(const String& format) const;
 	// Properties
