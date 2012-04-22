@@ -10,7 +10,7 @@ namespace Codebot
 namespace Graphics
 {
 
-namespace ImageFormats
+namespace ImageFileTypes
 {
 	extern const String bmp;
 	extern const String gif;
@@ -27,7 +27,7 @@ class Image : public ValueType, public IPersistent
 {
 private:
 	Codebot::Interop::Interface<IImage> image;
-	String format;
+	String fileType;
 public:
 	Image();
 	void Generate(Cardinal width, Cardinal height);
@@ -38,8 +38,8 @@ public:
 	// Override methods
 	String ToFormat(const String& format) const;
 	// Properties
-	String Format();
-	void Format(const String& value);
+	String FileType();
+	void FileType(const String& value);
 	Boolean Loaded() const;
 	Cardinal Width() const;
 	Cardinal Height() const;

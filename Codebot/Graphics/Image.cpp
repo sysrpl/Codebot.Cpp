@@ -11,7 +11,7 @@ namespace Graphics
 using namespace Codebot::Interop;
 using namespace Codebot::Graphics::Interop;
 
-namespace ImageFormats
+namespace ImageFileTypes
 {
 	const String bmp = "bmp";
 	const String gif = "gif";
@@ -21,7 +21,7 @@ namespace ImageFormats
 }
 
 Image::Image() :
-	image(null), format(ImageFormats::png)
+	image(null), fileType(ImageFileTypes::png)
 {
 	ImageCreate(Out(image));
 }
@@ -106,7 +106,7 @@ void Image::Premultiply()
 String Image::ToFormat(const String& format) const
 {
 	if (Loaded())
-		return Text::Format("image {1}x{2}, format: {0}", this->format,
+		return Text::Format("image {1}x{2}, format: {0}", fileType,
 			image->Width(), image->Height());
 	else
 		return "empty image";
@@ -114,24 +114,24 @@ String Image::ToFormat(const String& format) const
 
 // Image properties
 
-String Image::Format()
+String Image::FileType()
 {
-	return format;
+	return fileType;
 }
 
-void Image::Format(const String& value)
+void Image::FileType(const String& value)
 {
 	String s = value.ToLower().Trim();
-	if (s == ImageFormats::bmp)
-		format = s;
-	else if (s == ImageFormats::gif)
-		format = s;
-	else if (s == ImageFormats::jpg)
-		format = s;
-	else if (s == ImageFormats::tga)
-		format = s;
+	if (s == ImageFileTypes::bmp)
+		fileType = s;
+	else if (s == ImageFileTypes::gif)
+		fileType = s;
+	else if (s == ImageFileTypes::jpg)
+		fileType = s;
+	else if (s == ImageFileTypes::tga)
+		fileType = s;
 	else
-		format = ImageFormats::png;
+		fileType = ImageFileTypes::png;
 }
 
 Boolean Image::Loaded() const
@@ -161,7 +161,7 @@ Pixel* Image::Pixels() const
 
 void Image::Load(const String& fileName)
 {
-	format = image->GetFileFormat(fileName);
+	fileType = image->GetFileFormat(fileName);
 	if (!image->LoadFile(fileName))
 		ThrowImageException(ThisMethod);
 }
@@ -169,7 +169,7 @@ void Image::Load(const String& fileName)
 void Image::Load(Stream* stream)
 {
 	Interface<IStream> s = new StreamAdapter(stream);
-	format = image->GetStreamFormat(s);
+	fileType = image->GetStreamFormat(s);
 	if (!image->LoadStream(s))
 		ThrowImageException(ThisMethod);
 }
@@ -183,7 +183,7 @@ void Image::Save(const String& fileName) const
 void Image::Save(Stream* stream) const
 {
 	auto s = QueryAs<IStream>(new StreamAdapter(stream));
-	if (!image->SaveStream(format, s))
+	if (!image->SaveStream(fileType, s))
 		ThrowImageException(ThisMethod);
 }
 
