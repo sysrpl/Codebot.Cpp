@@ -1,0 +1,9 @@
+*~
+bin
+lib
+Debug
+*.exe
+*.dll
+*.so
+.metadata
+
